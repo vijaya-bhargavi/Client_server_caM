@@ -1,2 +1,2 @@
 # Client_server_caM
-a client server based appl in java
+Given an image path to the server,it produces r,g and b channels respectively and sends to client thereby the client recombining them to form original image.Here any image is transferred as png for lossless compression.
