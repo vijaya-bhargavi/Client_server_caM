@@ -14,4 +14,4 @@ plt.xticks([]), plt.yticks([])
 plt.subplot(133),plt.imshow(imgb,cmap="gray"),plt.title("Blue")
 plt.xticks([]), plt.yticks([])
 
-plt.show()
+plt.show() 
