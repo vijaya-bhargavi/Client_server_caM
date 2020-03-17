@@ -97,6 +97,7 @@ class client{
 						
 		}
 		catch(Exception ae){
+			System.out.println(ae.getMessage());
 		}
 	}
 	
