@@ -1,5 +1,6 @@
 import cv2
 import matplotlib.pyplot as plt
+
 imgr=cv2.imread("/home/vijaya/Desktop/red.png")
 imgg=cv2.imread("/home/vijaya/Desktop/green.png")
 imgb=cv2.imread("/home/vijaya/Desktop/blue.png")
