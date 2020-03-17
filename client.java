@@ -7,9 +7,12 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
 
-class client{
-	public static void main(String[] args){
+class CLient{
+	public CLient(){
 		try{
 			Socket socket=new Socket("127.0.0.1",3456);
 			Scanner sc=new Scanner(System.in);
@@ -20,9 +23,13 @@ class client{
 			System.out.println("Client Connected");
 			
 			//give your respective paths here 
-			File f1=new File("/home/vijaya/Desktop/newfolder/r."+str);
-			File f2=new File("/home/vijaya/Desktop/newfolder/g."+str);
-			File f3=new File("/home/vijaya/Desktop/newfolder/b."+str);
+			String p1="/home/vijaya/Desktop/newfolder/r."+str;
+			String p2="/home/vijaya/Desktop/newfolder/g."+str;
+			String p3="/home/vijaya/Desktop/newfolder/b."+str;
+			
+			File f1=new File(p1);
+			File f2=new File(p2);
+			File f3=new File(p3);
 			
 			int temp;
 			
@@ -99,5 +106,30 @@ class client{
 		catch(Exception ae){
 		}
 	}
-	
+}
+
+class clientPython{
+	public clientPython(){
+	String s=null;
+		try{
+			Process p=Runtime.getRuntime().exec("python3 pythonForClient.py");
+			BufferedReader stdInput=new BufferedReader(new InputStreamReader(p.getInputStream()));
+			BufferedReader stdError=new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			//System.out.println("HEY");
+			while((s=stdInput.readLine())!=null){
+				System.out.println(s);
+			}
+			System.exit(0);
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+}
+
+class client{
+	public static void main(String[] args){
+		CLient c=new CLient();
+		clientPython cp=new clientPython();
+	}
 }
