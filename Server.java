@@ -9,15 +9,17 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-class Server{
+class SErver{
 
 	int i=0,j=0;
 	BufferedImage img;
 	int width;
 	int height;
 	
-	public Server(){
+	public SErver(){
 		try{
 			String str,s;
 			ServerSocket server=new ServerSocket(3456);
@@ -70,29 +72,10 @@ class Server{
 						grsclimb.setRGB(j,i,bl.getRGB());
 					}
 			}
-			
-			System.out.println("Enter a path to store your channels of image..your format should be /home/xyz/rty/");
-			String path1=sc.next();
-			System.out.println();
-			
-			System.out.print("Enter name of the red channel image file...give just name like pqr: ");
-			String name1=sc.next();
-			System.out.println();
-			
-			
-			System.out.print("Enter name of the green channel image file...give just name like pqr: ");
-			String name2=sc.next();
-			System.out.println();
-			
-			System.out.print("Enter name of the blue channel image file...give just name like pqr: ");
-			String name3=sc.next();
-			System.out.println();
-			
-			String PATH1=path1+name1+"."+"png";
-			
-			String PATH2=path1+name2+"."+"png";
-			
-			String PATH3=path1+name3+"."+"png";
+			//give your respective paths here
+			String PATH1="/home/vijaya/Desktop/red.png";
+			String PATH2="/home/vijaya/Desktop/green.png";
+			String PATH3="/home/vijaya/Desktop/blue.png";
 			
 			ImageIO.write(grsclimr,"png",new File(PATH1));
 			ImageIO.write(grsclimg,"png",new File(PATH2));
@@ -109,35 +92,57 @@ class Server{
 			FileInputStream fisg=new FileInputStream(fg);
 			FileInputStream fisb=new FileInputStream(fb);
 			
-		int b=0;
-		
-		int red=fisr.read();
-		while(red!=-1){
-			p.println(red);
-			red=fisr.read();
-		}
-		p.println(-1);
-		
-		int green=fisg.read();
-		while(green!=-1){
-			p.println(green);
-			green=fisg.read();
-		}
-		p.println(-1);
-		
-		int blue=fisb.read();
-		while(blue!=-1){
-			p.println(blue);
-			blue=fisb.read();
-		}
-		p.println(-1);
+			int b=0;
 			
+			int red=fisr.read();
+			while(red!=-1){
+				p.println(red);
+				red=fisr.read();
+			}
+			p.println(-1);
+			
+			int green=fisg.read();
+			while(green!=-1){
+				p.println(green);
+				green=fisg.read();
+			}
+			p.println(-1);
+		
+			int blue=fisb.read();
+			while(blue!=-1){
+				p.println(blue);
+				blue=fisb.read();
+			}
+			p.println(-1);
+				
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
 		}
 	}
+}
+
+class serverPython{
+		String s=null;
+		public serverPython(){
+			try{
+				Process p=Runtime.getRuntime().exec("python3 pythonForServer.py");
+				BufferedReader stdInput=new BufferedReader(new InputStreamReader(p.getInputStream()));
+				BufferedReader stdError=new BufferedReader(new InputStreamReader(p.getErrorStream()));
+				while((s=stdInput.readLine())!=null){
+					System.out.println(s);
+				}
+				System.exit(0);
+			}
+			catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+}
+
+class Server{
 	public static void main(String[] args)throws Exception{
-	Server s=new Server();
+	SErver s=new SErver();
+	serverPython sp=new serverPython();
 	}
 }
