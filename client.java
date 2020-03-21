@@ -12,9 +12,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 
-class Ckient{
+class CLient{
 
-	public Ckient(){
+	public CLient(){
 
 	try{
 
@@ -142,6 +142,6 @@ class clientPython{
 
 class client{
 	public static void main(String[] args){
-	Ckient c=new Ckient();
+	CLient c=new CLient();
 	}
 }
