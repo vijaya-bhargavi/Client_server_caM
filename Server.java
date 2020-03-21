@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 class SErver{
+	
 	int i=0,j=0;
 	BufferedImage img;
 	int width;
